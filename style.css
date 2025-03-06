@@ -1,48 +1,109 @@
+/* General Reset */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f0f0f0;
+    background: linear-gradient(135deg, #e0e7ff, #d1d8f0);
+    color: #1e293b;
 }
 
+/* Container */
 .container {
     text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    max-width: 320px;
+    width: 100%;
 }
 
+/* Title */
 h1 {
     margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1e293b;
 }
 
+/* Game Board */
 #board {
     display: grid;
     grid-template-columns: repeat(3, 100px);
     grid-template-rows: repeat(3, 100px);
     gap: 5px;
     margin-bottom: 20px;
+    position: relative;
 }
 
+/* Cells */
 .cell {
     width: 100px;
     height: 100px;
-    background-color: #fff;
-    border: 2px solid #000;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2em;
+    font-size: 2.5em;
+    font-weight: 600;
     cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
+.cell:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.05);
+}
+
+.cell[data-index]:not(:empty) {
+    pointer-events: none; /* Disable clicks on filled cells */
+}
+
+/* Winning Line */
+#winning-line {
+    position: absolute;
+    height: 4px;
+    background: #ff4757;
+    transform-origin: 0 0;
+    display: none;
+    z-index: 10;
+}
+
+/* Reset Button */
 #reset {
-    padding: 10px 20px;
+    padding: 12px 24px;
     font-size: 1em;
+    font-weight: 500;
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: white;
+    border: none;
+    border-radius: 12px;
     cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+#reset:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#reset:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Status Text */
 #status {
     margin-top: 20px;
     font-size: 1.2em;
+    font-weight: 500;
+    color: #64748b;
 }
